@@ -1,0 +1,437 @@
+openapi: 3.1.0
+info:
+  title: Lost Task API
+  description: API for Companion App of Lost Ark
+  version: 1.0.0
+paths:
+  /v1/users:
+    put:
+      summary: Create user
+      responses:
+        "201":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  - id: 
+                  - email:
+        "501":
+          description: "Error"
+    post:
+      summary: Auth user
+      requestBody:
+        content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  - email
+                  - password
+      responses:
+        "200":
+          description: "Auth ok"
+        "403":
+          description: "Wrong credentials"
+        "404":
+          description: "User not found"
+        "501":
+          description: "Error"
+  /v1/users/{id}:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+      - bearer:
+        in: header
+        required: true
+    get:
+      summary: Get a single user
+      responses:
+    patch:
+      summary:  Update a single user
+      requestBody:
+      responses:
+    delete:
+      summary:  Delete a single user
+      responses:
+  /v1/users/{id}/main:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+      - bearer:
+        in: header
+        required: true
+    post:
+      summary: Set the main character of a user
+      requestBody:
+      responses:
+  /v1/users/{id}/tasks:
+  /v1/users/{id}/tasks/{task}:
+  /v1/users/{id}/tasks/{task}/check:
+  /v1/users/{id}/characters:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+      - bearer:
+        in: header
+        required: true
+    get:
+      summary: Get all character of a user
+      responses:
+    put:
+      summary: Create a character for a user
+      requestBody:
+      responses:
+  /v1/users/{id}/characters/{character}:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+      - character:
+        in: path
+        required: true
+        schema:
+          type: string
+      - bearer:
+        in: header
+        required: true
+    get:
+      summary: Get a single character of a user
+      responses:
+    patch:
+      summary: Update a single character of a user
+      requestBody:
+      responses:
+    delete:
+      summary: Delete a single character of a user
+      responses:
+
+  /v1/tasks:
+    get:
+      summary: Get all tasks
+      responses:
+    put:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Create a task
+      requestBody:
+      responses:
+  /v1/tasks/id/{id}:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+    get:
+      summary: Get a single task
+      responses:
+    patch:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Update a single task
+      requestBody:
+      responses:
+    delete:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Delete a single task
+      responses:
+  /v1/tasks/types:
+    get:
+      summary: Get all task types
+      responses:
+    put:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Create a task type
+      requestBody:
+      responses:
+  /v1/tasks/types/{id}:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+      - bearer:
+        in: header
+        required: true
+    get:
+    patch:
+      summary: Update a single task type
+      requestBody:
+      responses:
+    delete:
+      summary: Delete a single task type
+      responses:
+      
+  /v1/shop:
+    get:
+      summary: Get the shop
+      responses:
+    patch:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Update the shop
+      requestBody:
+      responses:
+  /v1/shop/items:
+
+  /v1/islands:
+  /v1/islands/{id}:
+
+  /v1/items:
+    get:
+      summary: Get all items
+      responses:
+    put:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Create an item
+      requestBody:
+      responses:
+  /v1/items/{id}:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+    get:
+      summary: Get a single item
+      responses:
+    patch:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Update a single item
+      requestBody:
+      responses:
+    delete:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Delete a single item
+      responses:
+  
+  /v1/classes:
+    get:
+      summary: Get all classes
+      responses:
+    put:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Create a classe
+      requestBody:
+      responses:
+  /v1/classes/{id}:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+      - bearer:
+        in: header
+        required: true
+    patch:
+      summary: Update a single classe
+      requestBody:
+      responses:
+    delete:
+      summary: Delete a single classe
+      responses:
+
+  /v1/regions:
+    get:
+      summary: Get all regions
+      responses:
+    put:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Create a region
+      requestBody:
+        content:
+          application/json:
+            schema: object
+            properties:
+              name:
+                type: string
+                description: name of the region
+              abbr:
+                type: string
+                description: abbreviation of the region
+      responses:
+        "201":
+          description: "OK"
+          content:
+        "501":
+          description: "Error"
+          content:
+        "401":
+          description: "Authentification required"
+          content:
+        "403":
+          description: "Unauthorized"
+          content:
+  /v1/regions/{abbr}:
+    parameters:
+      - abbr:
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get a single region
+      responses:
+    put:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Create a server
+      requestBody:
+        content:
+          application/json:
+            schema: object
+            properties:
+              name:
+                type: string
+                description: name of the server
+      responses:
+    patch:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Update a single region
+      requestBody:
+      responses:
+    delete: 
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Delete a single region
+      responses:
+  /v1/regions/{abbr}/state:
+    parameters:
+        - bearer:
+          in: header
+          required: true
+    post:
+      summary: Change the server state of all server of a region
+      requestBody:
+      responses:
+  /v1/regions/{abbr}/servers/{server}:
+    parameters:
+      - abbr:
+        in: path
+        required: true
+        schema:
+          type: string
+      - server:
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get a single server
+      responses:
+    patch:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Update a single server
+      requestBody:
+      responses:
+    delete:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Delete a single server
+      responses:
+  /v1/regions/{abbr}/servers/{server}/state:
+    parameters:
+      - abbr:
+        in: path
+        required: true
+        schema:
+          type: string
+      - server:
+        in: path
+        required: true
+        schema:
+          type: string
+      - bearer:
+        in: header
+        required: true
+    post:
+      summary: Change the server state of a server
+      requestBody:
+      responses:
+
+  /v1/server-states:
+    get:
+      summary: Get all server states
+      responses:
+    put:
+      parameters:
+        - bearer:
+          in: header
+          required: true
+      summary: Create a server state
+      requestBody:
+      responses:
+  /v1/server-states/{id}:
+    parameters:
+      - id:
+        in: path
+        required: true
+        schema:
+          type: id
+      - bearer:
+        in: header
+        required: true
+    patch:
+      summary: Update a single server state
+      requestBody:
+      responses:
+    delete:
+      summary: Delete a single server state
+      responses:
+
+  
